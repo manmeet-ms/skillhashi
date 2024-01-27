@@ -1,6 +1,12 @@
 /* firebase.js */
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, getDoc } from "firebase/firestore";
+import {
+    getFirestore,
+    collection,
+    doc,
+    getDoc,
+    setDoc,
+} from "firebase/firestore";
 import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -26,10 +32,22 @@ const db = getFirestore(app); // Get the firestore service
  * Create a new user with email and password
  * @param {string} email
  * @param {string} password
+ * @param {string} targetRole - The target role that the user is interested in
+ * @param {boolean} isCompany - A boolean to check if the user is a company or not
  * @returns {Promise<UserCredential>} - A promise that resolves with a UserCredential object on success.
  */
-const register = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
+const register = async (email, password, targetRole, isCompany) => {
+    const userCred = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+    );
+    if (isCompany) {
+        await addCompany(email);
+    } else {
+        await addUser(email, targetRole);
+    }
+    return userCred;
 };
 
 /**
@@ -155,6 +173,87 @@ const getRoleSkills = async role => {
     }
 };
 
+// Now write operations for collections:
+
+/**
+ * Add a new user to firestore, with email as the document id
+ * @param {string} email - The email of the user that he/she used to register
+ * @param {string} targetRole - The target role that the user is interested in
+ * @returns {Promise<array>} - A promise that resolves with an array of strings on success with associated skills.
+ */
+const addUser = async (email, targetRole) => {
+    try {
+        const userRef = doc(db, "users", email);
+        const userDoc = await getDoc(userRef);
+        if (!userDoc.exists()) {
+            const skills = await getRoleSkills(targetRole);
+            await setDoc(userRef, {
+                target_role: targetRole,
+                skills: skills,
+            });
+            console.log("User added!");
+            return skills;
+        } else {
+            throw new Error("User already exists!");
+        }
+    } catch (error) {
+        console.log("Error adding user", error.message);
+    }
+};
+
+/**
+ * Add a new company to firestore, with email as the document id
+ * @param {string} email - The email of the company that he/she used to register
+ * @returns {Promise<void>} - A promise that resolves when the company is added.
+ */
+const addCompany = async email => {
+    try {
+        const companyRef = doc(db, "companies", email);
+        const companyDoc = await getDoc(companyRef);
+        if (!companyDoc.exists()) {
+            await setDoc(companyRef, {
+                roles: [],
+            });
+            console.log("Company added!");
+        } else {
+            throw new Error("Company already exists!");
+        }
+    } catch (error) {
+        console.log("Error adding company", error.message);
+    }
+};
+
+/**
+ * Add a new role to the firestore collection "roles" when a company adds a new role via form
+ * on the frontend. The role is also added to the company document in the "roles" array.
+ * @param {string} email - The email of the company
+ * @param {string} role - The role that the company wants to add
+ * @param {string[]} skills - The skills associated with the role
+ * @returns {Promise<boolean>} - A promise that resolves with a boolean true on success
+ */
+const addRole = async (email, role, skills) => {
+    try {
+        const roleRef = doc(db, "roles", role);
+        const roleDoc = await getDoc(roleRef);
+        if (!roleDoc.exists()) {
+            await setDoc(roleRef, {
+                skills: skills,
+            });
+            const companyRef = doc(db, "companies", email);
+            const companyDoc = await getDoc(companyRef);
+            await setDoc(companyRef, {
+                roles: [...companyDoc.data().roles, role],
+            });
+            console.log("Role added!");
+            return true;
+        } else {
+            throw new Error("Role already exists!");
+        }
+    } catch (error) {
+        console.log("Error adding role", error.message);
+    }
+};
+
 export {
     auth,
     register,
@@ -166,4 +265,7 @@ export {
     getUserSkills,
     getCompanyRoles,
     getRoleSkills,
+    addUser,
+    addCompany,
+    addRole,
 };

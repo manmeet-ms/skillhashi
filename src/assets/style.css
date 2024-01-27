@@ -8,9 +8,9 @@
     padding: 0;
 }
 body{
-    width: 100vw;
+    width: 110vw;
     height: 100vh;
-    padding: 16px;
+    /* padding: 16px; */
     /* display: flex;
     justify-content: center;
     align-items: center;

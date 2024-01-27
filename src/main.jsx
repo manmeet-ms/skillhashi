@@ -7,6 +7,7 @@ import Login from "./routes/Login.jsx";
 import Register from "./routes/Register.jsx";
 import ResetPassword from "./routes/ResetPassword.jsx";
 import Dashboard from "./routes/Dashboard.jsx";
+import SetRole from "./routes/SetRole.jsx";
 
 import AuthProvider from "./AuthProvider.jsx";
 import Protected from "./Protected.jsx";
@@ -47,6 +48,14 @@ const router = createBrowserRouter([
         element: (
             <Protected>
                 <Dashboard />
+            </Protected>
+        ),
+    },
+    {
+        path: "/setrole",
+        element: (
+            <Protected>
+                <SetRole />
             </Protected>
         ),
     },

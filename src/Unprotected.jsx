@@ -9,7 +9,7 @@ function Unprotected({ children }) {
     const user = useContext(AuthContext);
 
     if (user) {
-        return <Navigate to="/" replace />;
+        return <Navigate to="/dashboard" replace />;
     }
 
     return children;

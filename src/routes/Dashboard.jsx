@@ -1,8 +1,7 @@
-// import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CompanyRecom from "../components/CompanyRecom";
-import {
-    logout /*getUserSkills, getCompanyRoles, getRoleSkills */,
-} from "../firebase";
+import { logout, getUserSkills } from "../firebase";
+import { useAuth } from "../hooks/useAuth";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 
@@ -14,13 +13,19 @@ import {
 // import Header from "../components/Header";
 
 const Home = () => {
-    // let d = "Wed, 27 January 2024";
+    const [userSkills, setUserSkills] = useState([]);
+    const { user } = useAuth();
 
-    // useEffect(() => {
-    //     getRoleSkills("analyst").then(user => {
-    //         console.log(user);
-    //     });
-    // }, []);
+    useEffect(() => {
+        getUserSkills(user.email)
+            .then(skills => {
+                setUserSkills(skills);
+                console.log(skills);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }, [user]);
 
     return (
         <>

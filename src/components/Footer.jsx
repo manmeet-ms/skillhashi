@@ -9,7 +9,7 @@ const Footer = () => {
   const bubbleStyle = "relative z-[2] w-max flex-shrink-0 overflow-hidden rounded-full px-6 py-2 text-gray-400 bg-indigo-800 bg-opacity-0 hover:bg-opacity-30 focus:bg-opacity-30 transition-all duration-500 ease-in-out"
 
   return (
-    <main className='w-full absolute bottom-0 bg-gray-800 rounded-t-xl'>
+    <main className=' z-2 w-full absolute bottom-0 bg-gray-800 rounded-t-xl'>
       <div className='flex justify-between p-4'>
 
     <Link to="/dashboard">

@@ -25,7 +25,7 @@ h6 {
     font-family: Satoshi !important;
     font-weight: 600;
 }
-p,span{
+p,span, button{
     font-family: Roboto !important;
     font-weight: 400;
 }

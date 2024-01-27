@@ -1,25 +1,48 @@
+// import { useEffect } from "react";
 import CompanyRecom from "../components/CompanyRecom";
-import { logout } from '../firebase'
+import {
+    logout /*getUserSkills, getCompanyRoles, getRoleSkills */,
+} from "../firebase";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
-import Graph from "../components/Graph";
 
-import { PresentationChartBarIcon, ClockIcon, ArrowLongRightIcon } from "@heroicons/react/24/outline";
-import Header from '../components/Header'
+import {
+    PresentationChartBarIcon,
+    // ClockIcon,
+    ArrowLongRightIcon,
+} from "@heroicons/react/24/outline";
+// import Header from "../components/Header";
 
 const Home = () => {
-    let d = "Wed, 27 January 2024";
+    // let d = "Wed, 27 January 2024";
+
+    // useEffect(() => {
+    //     getRoleSkills("analyst").then(user => {
+    //         console.log(user);
+    //     });
+    // }, []);
+
     return (
         <>
             <main className="flex flex-col space-y-6 px-2">
                 {/* top bar */}
-                <header className='flex justify-between py-6  bg-gray-800 bg-opacity-40 rounded-b-xl text-gray-400'>
+                <header className="flex justify-between py-6  bg-gray-800 bg-opacity-40 rounded-b-xl text-gray-400">
                     <h1 className="title-font flex text-xl text-gray-200">
-                        <PresentationChartBarIcon className='mr-2 mt-1 w-6 h-6 text-indigo-500' strokeWidth='2' />
-                        <Link to="#">SkillHashi</Link> </h1>
-                    <button className="inline-flex justify-end text-indigo-500 font-medium " onClick={logout}>
+                        <PresentationChartBarIcon
+                            className="mr-2 mt-1 w-6 h-6 text-indigo-500"
+                            strokeWidth="2"
+                        />
+                        <Link to="#">SkillHashi</Link>{" "}
+                    </h1>
+                    <button
+                        className="inline-flex justify-end text-indigo-500 font-medium "
+                        onClick={logout}
+                    >
                         Logout
-                        <ArrowLongRightIcon strokeWidth="2.5" className="w-5 h-5 ml-2" />
+                        <ArrowLongRightIcon
+                            strokeWidth="2.5"
+                            className="w-5 h-5 ml-2"
+                        />
                     </button>
                 </header>
                 <section className="flex flex-col ">
@@ -34,7 +57,6 @@ const Home = () => {
                         </h1>
                     </div>
                     <div className=" flex justify-center items-center w-100 h-48 bg-gray-800 rounded-xl">
-                        <Graph/>
                         {/* <button className="text-gray-100 bg-indigo-600 border-0 py-3 px-6 focus:outline-none hover:bg-indigo-600 rounded-full text-base font-medium shadow-lg"> <Link to="/setrole">Set Role<Link/></Link> </button> */}
                     </div>
                 </section>

@@ -1,6 +1,6 @@
 /* firebase.js */
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection } from "firebase/firestore";
+import { getFirestore, collection, doc, getDoc } from "firebase/firestore";
 import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -68,11 +68,13 @@ const logout = () => {
  * @param {email} email - The email of the user that he/she used to register
  * @returns {Promise<DocumentSnapshot>} - A promise that resolves with a DocumentSnapshot object on success.
  */
-const getUserDocument = email => {
+const getUserDocument = async email => {
     try {
-        const userRef = collection(db, "users");
-        const userDoc = userRef.doc(email).get();
-        console.log("userDoc", userDoc);
+        const userDoc = await getDoc(doc(collection(db, "users"), email));
+        if (!userDoc.exists()) {
+            throw new Error("No such user!");
+        }
+        console.log("getUserDocument", userDoc);
         return userDoc;
     } catch (error) {
         console.log("Error fetching user document", error.message);
@@ -84,11 +86,11 @@ const getUserDocument = email => {
  * @param {email} email - The email of the user that he/she used to register
  * @returns {Promise<string>} - A promise that resolves with a string on success.
  */
-const getUserTargetRole = email => {
+const getUserTargetRole = async email => {
     try {
-        const userDoc = getUserDocument(email);
-        const targetRole = userDoc.data().targetRole;
-        console.log("targetRole", targetRole);
+        const userDoc = await getUserDocument(email);
+        const targetRole = userDoc.data().target_role;
+        console.log("getUserTargetRole", targetRole);
         return targetRole;
     } catch (error) {
         console.log("Error fetching user target role", error.message);
@@ -100,11 +102,11 @@ const getUserTargetRole = email => {
  * @param {email} email - The email of the user that he/she used to register
  * @returns {Promise<string[]>} - A promise that resolves with an array of strings on success.
  */
-const getUserSkills = email => {
+const getUserSkills = async email => {
     try {
-        const userDoc = getUserDocument(email);
+        const userDoc = await getUserDocument(email);
         const skills = userDoc.data().skills;
-        console.log("skills", skills);
+        console.log("getUserSkills", skills);
         return skills;
     } catch (error) {
         console.log("Error fetching user skills", error.message);
@@ -116,13 +118,17 @@ const getUserSkills = email => {
  * @param {email} email - Similar to user document but with a different collection name. Only has roles and no skills.
  * @returns {Promise<string[]>} - A promise that resolves with an array of strings on success.
  */
-const getCompanyRoles = email => {
+const getCompanyRoles = async email => {
     try {
-        const companyRef = collection(db, "companies");
-        const companyDoc = companyRef.doc(email).get();
-        const roles = companyDoc.data().roles;
-        console.log("roles", roles);
-        return roles;
+        const companyRef = doc(db, "companies", email);
+        const companyDoc = await getDoc(companyRef);
+        if (companyDoc.exists()) {
+            const roles = companyDoc.data().roles;
+            console.log("roles", roles);
+            return roles;
+        } else {
+            throw new Error("No such company!");
+        }
     } catch (error) {
         console.log("Error fetching company roles", error.message);
     }
@@ -133,13 +139,17 @@ const getCompanyRoles = email => {
  * @param {string} role - The role that the user is interested in
  * @returns {Promise<string[]>} - A promise that resolves with an array of strings on success.
  */
-const getRoleSkills = role => {
+const getRoleSkills = async role => {
     try {
-        const rolesRef = collection(db, "roles");
-        const roleDoc = rolesRef.doc(role).get();
-        const skills = roleDoc.data().skills;
-        console.log("skills", skills);
-        return skills;
+        const rolesRef = doc(db, "roles", role);
+        const roleDoc = await getDoc(rolesRef);
+        if (roleDoc.exists()) {
+            const skills = roleDoc.data().skills;
+            console.log("skills", skills);
+            return skills;
+        } else {
+            throw new Error("No such role!");
+        }
     } catch (error) {
         console.log("Error fetching role skills", error.message);
     }

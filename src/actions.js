@@ -5,7 +5,7 @@ import { register, login, addRole } from "./firebase";
 export const registerAction = async ({ request }) => {
     const data = Object.fromEntries(await request.formData());
     try {
-        await register(data.email.toString(), data.password.toString());
+        await register(data.email.toString(), data.password.toString(), data.targetRole.toString(), data.isCompany);
         return redirect("/");
     } catch (error) {
         console.log(error);

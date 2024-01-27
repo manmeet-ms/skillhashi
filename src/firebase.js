@@ -1,5 +1,6 @@
 /* firebase.js */
 import { initializeApp } from "firebase/app";
+import { getFirestore, collection } from "firebase/firestore";
 import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -19,6 +20,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app); // Get the authentication service
+const db = getFirestore(app); // Get the firestore service
 
 /**
  * Create a new user with email and password
@@ -57,4 +59,101 @@ const logout = () => {
     return signOut(auth);
 };
 
-export { auth, register, login, resetPassword, logout };
+// Firebase firestore helper functions
+
+// Read operations for collections:
+
+/**
+ * Get a user document from firestore
+ * @param {email} email - The email of the user that he/she used to register
+ * @returns {Promise<DocumentSnapshot>} - A promise that resolves with a DocumentSnapshot object on success.
+ */
+const getUserDocument = email => {
+    try {
+        const userRef = collection(db, "users");
+        const userDoc = userRef.doc(email).get();
+        console.log("userDoc", userDoc);
+        return userDoc;
+    } catch (error) {
+        console.log("Error fetching user document", error.message);
+    }
+};
+
+/**
+ * Get user target role (in the user document) from firestore
+ * @param {email} email - The email of the user that he/she used to register
+ * @returns {Promise<string>} - A promise that resolves with a string on success.
+ */
+const getUserTargetRole = email => {
+    try {
+        const userDoc = getUserDocument(email);
+        const targetRole = userDoc.data().targetRole;
+        console.log("targetRole", targetRole);
+        return targetRole;
+    } catch (error) {
+        console.log("Error fetching user target role", error.message);
+    }
+};
+
+/**
+ * Get user skills (array of strings) (in the user document) from firestore
+ * @param {email} email - The email of the user that he/she used to register
+ * @returns {Promise<string[]>} - A promise that resolves with an array of strings on success.
+ */
+const getUserSkills = email => {
+    try {
+        const userDoc = getUserDocument(email);
+        const skills = userDoc.data().skills;
+        console.log("skills", skills);
+        return skills;
+    } catch (error) {
+        console.log("Error fetching user skills", error.message);
+    }
+};
+
+/**
+ * Get company roles (array of strings) (in the company document) from firestore
+ * @param {email} email - Similar to user document but with a different collection name. Only has roles and no skills.
+ * @returns {Promise<string[]>} - A promise that resolves with an array of strings on success.
+ */
+const getCompanyRoles = email => {
+    try {
+        const companyRef = collection(db, "companies");
+        const companyDoc = companyRef.doc(email).get();
+        const roles = companyDoc.data().roles;
+        console.log("roles", roles);
+        return roles;
+    } catch (error) {
+        console.log("Error fetching company roles", error.message);
+    }
+};
+
+/**
+ * Get all the associated skills (array of strings) with a role (in the roles collection) from firestore
+ * @param {string} role - The role that the user is interested in
+ * @returns {Promise<string[]>} - A promise that resolves with an array of strings on success.
+ */
+const getRoleSkills = role => {
+    try {
+        const rolesRef = collection(db, "roles");
+        const roleDoc = rolesRef.doc(role).get();
+        const skills = roleDoc.data().skills;
+        console.log("skills", skills);
+        return skills;
+    } catch (error) {
+        console.log("Error fetching role skills", error.message);
+    }
+};
+
+export {
+    auth,
+    register,
+    login,
+    resetPassword,
+    logout,
+    getUserDocument,
+    getUserTargetRole,
+    getUserSkills,
+    getCompanyRoles,
+    getRoleSkills,
+};

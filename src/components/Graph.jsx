@@ -1,96 +1,22 @@
+import React, { useState } from 'react';
+import ApexCharts from 'apexcharts'
+function Graph() {
+    let options = {
+        chart: {
+          type: 'line'
+        },
+        series: [{
+          name: 'sales',
+          data: [30,40,35,50,49,60,70,91,125]
+        }],
+        xaxis: {
+          categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+        }
+      }
+      
+      let chart = new ApexCharts(document.querySelector("#chart"), options);
+      
+      chart.render();}
+      
 
-class ApexChart extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-
-            series: [
-                {
-                    data: [
-                        {
-                            x: 'New Delhi',
-                            y: 218
-                        },
-                        {
-                            x: 'Kolkata',
-                            y: 149
-                        },
-                        {
-                            x: 'Mumbai',
-                            y: 184
-                        },
-                        {
-                            x: 'Ahmedabad',
-                            y: 55
-                        },
-                        {
-                            x: 'Bangaluru',
-                            y: 84
-                        },
-                        {
-                            x: 'Pune',
-                            y: 31
-                        },
-                        {
-                            x: 'Chennai',
-                            y: 70
-                        },
-                        {
-                            x: 'Jaipur',
-                            y: 30
-                        },
-                        {
-                            x: 'Surat',
-                            y: 44
-                        },
-                        {
-                            x: 'Hyderabad',
-                            y: 68
-                        },
-                        {
-                            x: 'Lucknow',
-                            y: 28
-                        },
-                        {
-                            x: 'Indore',
-                            y: 19
-                        },
-                        {
-                            x: 'Kanpur',
-                            y: 29
-                        }
-                    ]
-                }
-            ],
-            options: {
-                legend: {
-                    show: false
-                },
-                chart: {
-                    height: 350,
-                    type: 'treemap'
-                },
-                title: {
-                    text: 'Basic Treemap'
-                }
-            },
-
-
-        };
-    }
-
-
-
-    render() {
-        return (
-            <div>
-                <div id="chart">
-                    <ReactApexChart options={this.state.options} series={this.state.series} type="treemap" height={350} />
-                </div>
-                <div id="html-dist"></div>
-            </div>
-        );
-    }
-}
-export default Graph
+export default Graph;

@@ -2,13 +2,37 @@ import CompanyRecom from "../components/CompanyRecom";
 import { logout } from '../firebase'
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
-import Graph from "../components/Graph";
-
 import { PresentationChartBarIcon, ClockIcon, ArrowLongRightIcon } from "@heroicons/react/24/outline";
-import Header from '../components/Header'
 
 const Home = () => {
     let d = "Wed, 27 January 2024";
+    let options = {
+        series: [
+        {
+          data: [
+            {x:'Typing',y: 218},
+            {x: 'Communication',y: 149},
+            {x: 'Python',y: 184},
+            {x: 'Excel',y: 55},
+            {x: 'Linguistic',y: 29}
+          ]
+        }
+      ],
+        legend: {
+        show: false
+      },
+      chart: {
+        height: 200,
+        type: 'treemap'
+      },
+    //   title: {
+    //     text: 'Basic Treemap'
+    //   }
+    
+      };
+
+      let chart = new ApexCharts(document.querySelector("#chart"), options);
+      chart.render();
     return (
         <>
             <main className="flex flex-col space-y-6 px-2">
@@ -33,8 +57,8 @@ const Home = () => {
                             Your Skills
                         </h1>
                     </div>
-                    <div className=" flex justify-center items-center w-100 h-48 bg-gray-800 rounded-xl">
-                        <Graph/>
+                    <div id="chart" className="flex justify-center items-center w-100 h-48 bg-gray-800 rounded-xl">
+                        
                         {/* <button className="text-gray-100 bg-indigo-600 border-0 py-3 px-6 focus:outline-none hover:bg-indigo-600 rounded-full text-base font-medium shadow-lg"> <Link to="/setrole">Set Role<Link/></Link> </button> */}
                     </div>
                 </section>

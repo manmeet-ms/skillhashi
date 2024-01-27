@@ -1,0 +1,8 @@
+In the current landscape, there exists a significant mismatch between the skills companies require and the skill sets possessed by potential candidates. Traditional hiring processes often overlook the intricate details of an individual's abilities, leading to inefficiencies and missed opportunities. SkillHashi addresses this issue by recognizing the need for a more targeted and efficient approach to talent acquisition.
+
+# The Problem We Identified
+
+In the current era of fast pacing industry standards, we recognized a significant gap between the skill sets demanded by industries and the expertise possessed by students and potential candidates. Many individuals want to advance their careers and align with corporate needs, yet they struggle to find the right opportunities that match their skills and experience. This mismatch not only hinders individual progress but also creates inefficiencies for industries in finding qualified talent.
+
+
+Recognizing this challenge, we set out to address the disparity through SkillHashi, a dynamic web platform designed to bridge the gap between corporate requirements and individuals eager to enhance their skills. Our goal is to facilitate a seamless and efficient matchmaking process, ensuring that students and candidates can easily find opportunities that align with their skills and interests. By doing so, SkillHashi not only empowers individuals to upskill in specific roles but also contributes to filling the skill gap prevalent in the industry. Through our platform, we aspire to revolutionize skill-based matchmaking, providing a tailored solution that benefits both candidates and companies alike.

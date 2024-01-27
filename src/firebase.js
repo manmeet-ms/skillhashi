@@ -34,9 +34,10 @@ const db = getFirestore(app); // Get the firestore service
  * @param {string} password
  * @param {string} targetRole - The target role that the user is interested in
  * @param {boolean} isCompany - A boolean to check if the user is a company or not
+ * @param {string[]} skills - An array of strings that the company is looking for
  * @returns {Promise<UserCredential>} - A promise that resolves with a UserCredential object on success.
  */
-const register = async (email, password, targetRole, isCompany) => {
+const register = async (email, password, targetRole, isCompany, skills) => {
     const userCred = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -44,6 +45,7 @@ const register = async (email, password, targetRole, isCompany) => {
     );
     if (isCompany) {
         await addCompany(email);
+        await addRole(email, targetRole, skills);
     } else {
         await addUser(email, targetRole);
     }

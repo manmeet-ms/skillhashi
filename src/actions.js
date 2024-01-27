@@ -4,8 +4,15 @@ import { register, login, addRole } from "./firebase";
 
 export const registerAction = async ({ request }) => {
     const data = Object.fromEntries(await request.formData());
+    const skillsArray = data.skills.split(",");
     try {
-        await register(data.email.toString(), data.password.toString(), data.targetRole.toString(), data.isCompany);
+        await register(
+            data.email.toString(),
+            data.password.toString(),
+            data.targetRole.toString(),
+            data.isCompany,
+            skillsArray
+        );
         return redirect("/");
     } catch (error) {
         console.log(error);

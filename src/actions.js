@@ -6,11 +6,18 @@ export const registerAction = async ({ request }) => {
     const data = Object.fromEntries(await request.formData());
     const skillsArray = data.skills.split(",");
     try {
+        console.log({
+            email: data.email.toString(),
+            password: data.password.toString(),
+            targetRole: data.targetRole.toString(),
+            isCompany: data.isCompany.toString() === "true",
+            skills: skillsArray,
+        });
         await register(
             data.email.toString(),
             data.password.toString(),
             data.targetRole.toString(),
-            data.isCompany,
+            data.isCompany.toString() === "true",
             skillsArray
         );
         return redirect("/");

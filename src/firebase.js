@@ -6,6 +6,7 @@ import {
     doc,
     getDoc,
     setDoc,
+    getDocs,
 } from "firebase/firestore";
 import {
     getAuth,
@@ -175,6 +176,30 @@ const getRoleSkills = async role => {
     }
 };
 
+/**
+ * Get all roles, each company document has an array of roles. Get all company documents and then get all roles from each company document.
+ * @returns {Promise<string[]>} - A promise that resolves with an array of strings on success.
+ */
+const getAllRoles = async () => {
+    try {
+        const allCompanyDocs = await getDocs(collection(db, "companies"));
+        let allRoles = [];
+        allCompanyDocs.forEach(companyDoc => {
+            companyDoc.data().roles.forEach(role => {
+                allRoles.push(role);
+            });
+        });
+        // filter out duplicates
+        allRoles = allRoles.filter((role, index) => {
+            return allRoles.indexOf(role) === index;
+        });
+        console.log("allRoles", allRoles);
+        return allRoles;
+    } catch (error) {
+        console.log("Error fetching all roles", error.message);
+    }
+};
+
 // Now write operations for collections:
 
 /**
@@ -270,4 +295,5 @@ export {
     addUser,
     addCompany,
     addRole,
+    getAllRoles,
 };

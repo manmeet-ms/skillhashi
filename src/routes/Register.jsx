@@ -1,10 +1,18 @@
 /* src/routes/Register.jsx */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Link } from "react-router-dom";
 import Header from "../components/Header";
+import { getAllRoles } from "../firebase";
 
 export default function Register() {
     const [isCompany, setIsCompany] = useState(false);
+    const [availableRoles, setAvailableRoles] = useState([]);
+
+    useEffect(() => {
+        getAllRoles().then(res => {
+            setAvailableRoles(res);
+        });
+    }, []);
 
     return (
         <>

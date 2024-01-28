@@ -4,7 +4,8 @@ import { register, login, addRole } from "./firebase";
 
 export const registerAction = async ({ request }) => {
     const data = Object.fromEntries(await request.formData());
-    const skillsArray = data.skills.split(",");
+    console.log(data);
+    const skillsArray = data.skills?.split(",") || [];
     try {
         console.log({
             email: data.email.toString(),

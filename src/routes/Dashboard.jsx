@@ -88,9 +88,9 @@ const Home = () => {
                                 key={company}
                             />
                         ))}
-                    {/* <CompanyRecom stipend="12,000" name="Tata Indicom" />
+                    <CompanyRecom stipend="12,000" name="Tata Indicom" />
                     <CompanyRecom stipend="20,000" name="Aircel" />
-                    <CompanyRecom stipend="7,000" name="BSNL" /> */}
+                    <CompanyRecom stipend="7,000" name="BSNL" />
                 </section>
                 <Footer />
             </main>

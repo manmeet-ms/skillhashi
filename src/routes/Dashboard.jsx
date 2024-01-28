@@ -13,19 +13,16 @@ import {
 // import Header from "../components/Header";
 
 const Home = () => {
-    const [userSkills, setUserSkills] = useState([]);
-    const { user } = useAuth();
+    const [skills, setSkills] = useState([]);
+    const { user, loading } = useAuth();
 
     useEffect(() => {
-        getUserSkills(user.email)
-            .then(skills => {
-                setUserSkills(skills);
-                console.log(skills);
-            })
-            .catch(err => {
-                console.log(err);
+        if (!loading) {
+            getUserSkills(user.email).then(res => {
+                setSkills(res.skills);
             });
-    }, [user]);
+        }
+    }, [loading, user]);
 
     return (
         <>

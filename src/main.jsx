@@ -62,7 +62,7 @@ const router = createBrowserRouter(
         },
     ],
     {
-        basename: "/skillhashi",
+        basename: "/skillhashi/",
     }
 );
 

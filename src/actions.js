@@ -21,7 +21,7 @@ export const registerAction = async ({ request }) => {
             data.isCompany.toString() === "true",
             skillsArray
         );
-        return redirect("/skillhashi/dashboard");
+        return redirect("/dashboard");
     } catch (error) {
         console.log(error);
         alert(error.message);
@@ -33,7 +33,7 @@ export const loginAction = async ({ request }) => {
     const data = Object.fromEntries(await request.formData());
     try {
         await login(data.email.toString(), data.password.toString());
-        return redirect("/");
+        return redirect("/dashboard");
     } catch (error) {
         console.log(error);
         alert(error.message);
@@ -49,7 +49,7 @@ export const newRoleAction = async ({ request }) => {
             data.role.toString(),
             data.skills.toString()
         );
-        return redirect("/");
+        return redirect("/dashboard");
     } catch (error) {
         console.log(error);
         alert(error.message);

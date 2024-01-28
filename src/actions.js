@@ -21,7 +21,7 @@ export const registerAction = async ({ request }) => {
             data.isCompany.toString() === "true",
             skillsArray
         );
-        return redirect("/");
+        return redirect("/skillhashi/dashboard");
     } catch (error) {
         console.log(error);
         alert(error.message);

@@ -69,9 +69,10 @@ const Home = () => {
                     </div>
                     <div className="flex flex-wrap justify-start items-center w-100 h-48 bg-gray-800/20 rounded-xl">
                         {skills &&
-                            skills.map(role => (
-                                <SkillPill name={role} key={role} />
-                            ))}
+                            (console.log(skills),
+                            skills.map((role, i) => (
+                                <SkillPill name={role} key={i} />
+                            )))}
                     </div>
                 </section>
                 <hr className="opacity-30" />

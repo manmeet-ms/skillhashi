@@ -98,17 +98,32 @@ export default function Register() {
                                     </div>
                                 </div>
                                 <div className="relative mb-4">
-                                    <input
-                                        placeholder={
-                                            isCompany
-                                                ? "Enter a role you anticipate to hire for"
-                                                : "Target Role"
-                                        }
-                                        type="text"
-                                        id="targetRole"
-                                        name="targetRole"
-                                        className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded-full text-base outline-none text-gray-300 py-3 px-6 leading-8 transition-colors duration-200 ease-in-out"
-                                    />
+                                    {isCompany && (
+                                        <input
+                                            placeholder={
+                                                isCompany
+                                                    ? "Enter a role you anticipate to hire for"
+                                                    : "Target Role"
+                                            }
+                                            type="text"
+                                            id="targetRole"
+                                            name="targetRole"
+                                            className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded-full text-base outline-none text-gray-300 py-3 px-6 leading-8 transition-colors duration-200 ease-in-out"
+                                        />
+                                    )}
+                                    {!isCompany && (
+                                        <select
+                                            id="role"
+                                            name="targetRole"
+                                            className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded-full text-base outline-none text-gray-300 py-3 my-2 px-6 leading-8 transition-colors duration-200 ease-in-out"
+                                        >
+                                            {availableRoles.map(role => (
+                                                <option value={role} key={role}>
+                                                    {role}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    )}
                                 </div>
                                 {isCompany && (
                                     <textarea

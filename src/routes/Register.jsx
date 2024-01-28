@@ -28,24 +28,21 @@ export default function Register() {
 Are you signing up as company?
                 <div className="flex justify-start">
                 <div className="flex items-center py-4 mr-4">
-                    <div className="bg-white dark:bg-gray-100 rounded-full w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
-                        <input aria-labelledby="label2" value="1" type="radio" name="radio" className="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
-                        <div className="check-icon hidden border-4 border-indigo-600 rounded-full w-full h-full z-1"></div>
-                    </div>
-                    <label id="label2" className="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">Yes</label>
+                        <input aria-labelledby="label2" value="true" type="radio" name="isCompany"/>
+                    <label id="label2" className="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-300">Yes</label>
                 </div>
                 <div className="flex items-center py-4 mr-4">
-                    <div className="bg-white dark:bg-gray-100 rounded-full w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
-                        <input aria-labelledby="label2" value="0" type="radio" name="radio" className="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
-                        <div className="check-icon hidden border-4 border-indigo-600 rounded-full w-full h-full z-1"></div>
-                    </div>
-                    <label id="label2" className="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">No</label>
+                        <input defaultChecked aria-labelledby="label2" value="0" type="radio" name="isCompany"/>
+                    <label id="label2" className="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-300">No</label>
                 </div>
 
                 </div>
 </div>
-
-                <textarea id="message" name="message" placeholder="Enter comma separated values" className=" mb-6 h-32 bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded-xl text-base outline-none text-gray-300 py-3 px-6 leading-8 transition-colors duration-200 ease-in-out"></textarea>
+<div className="relative mb-4">
+                  <input placeholder='Job title' type="text" id="targetRole" name="targetRole" className="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded-full text-base outline-none text-gray-300 py-3 px-6 leading-8 transition-colors duration-200 ease-in-out" />
+                </div>
+                
+                <textarea id="message" name="skills" placeholder="Enter comma separated values" className=" mb-6 h-32 bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-indigo-900 rounded-xl text-base outline-none text-gray-300 py-3 px-6 leading-8 transition-colors duration-200 ease-in-out"></textarea>
                 <button type="submit" className="text-gray-200 bg-indigo-500 border-0 py-3 px-8 focus:outline-none hover:bg-indigo-600 rounded-full text-base">Register</button>
                 <p className="text-sm text-center mt-2">Already have an account? <Link className="text-indigo-500" to="/">Login</Link> instead</p>
               </div>

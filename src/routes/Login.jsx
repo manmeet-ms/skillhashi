@@ -10,7 +10,8 @@ export default function Login() {
                     <div className="container w-full px-8 py-12 mx-auto flex flex-wrap items-center">
                         <div className="lg:w-3/5 md:w-1/2  md:pr-16 lg:pr-0 pr-0">
                             <h1 className="title-font font-medium text-3xl text-gray-200">Log into your account</h1>
-                            <p className="leading-relaxed mt-2">Lorem ipsum amet consectetur elit.</p>
+                            <p className="leading-relaxed mt-2">Bridge the gap between industrial demands and your skills.
+</p>
                         </div>
                         <Form  className="w-full" method="POST">
                             <div className="lg:w-2/6 md:w-1/2 rounded-lg flex flex-col md:ml-auto w-full mt-10 md:mt-0">

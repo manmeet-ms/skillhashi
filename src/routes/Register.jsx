@@ -25,7 +25,7 @@ export default function Register() {
                                 Register
                             </h1>
                             <p className="leading-relaxed mt-2">
-                                Lorem ipsum amet consectetur elit.
+                            Bridge the gap between industrial demands and your skills
                             </p>
                         </div>
                         <Form className="w-full" method="POST">

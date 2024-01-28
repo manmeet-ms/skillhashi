@@ -16,6 +16,7 @@ const CompanyRecom = (props) => {
             <div className="flex flex-col gap-1">
               <h6 className="block font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-gray-200">
                 {props.name}
+                
               </h6>
               <span className="inline-flex text-gray-400">
                 <CurrencyRupeeIcon className='w-4 h-4 mr-1 mt-1' />

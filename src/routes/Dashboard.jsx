@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import CompanyRecom from "../components/CompanyRecom";
-import { logout, getUserSkills } from "../firebase";
+import { logout, getUserSkills, getCompaniesWithRole } from "../firebase";
 import { useAuth } from "../hooks/useAuth";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import SkillPill from "../components/SkillPill";
-
 
 import {
     PresentationChartBarIcon,
@@ -16,11 +15,21 @@ import {
 
 const Home = () => {
     const [skills, setSkills] = useState([]);
+    const [companies, setCompanies] = useState([]);
     const { user, loading } = useAuth();
     useEffect(() => {
         if (!loading) {
             getUserSkills(user.email).then(res => {
                 setSkills(res);
+            });
+        }
+    }, [loading, user]);
+
+    useEffect(() => {
+        if (!loading) {
+            getCompaniesWithRole(user.email).then(res => {
+                console.log(res);
+                setCompanies(res);
             });
         }
     }, [loading, user]);
@@ -63,7 +72,6 @@ const Home = () => {
                             skills.map(role => (
                                 <SkillPill name={role} key={role} />
                             ))}
-
                     </div>
                 </section>
                 <hr className="opacity-30" />
@@ -71,9 +79,17 @@ const Home = () => {
                     <h1 className="title-font font-medium text-2xl text-white my-2">
                         Company Recoms
                     </h1>
-                    <CompanyRecom stipend="12,000" name="Tata Indicom" />
+                    {companies &&
+                        companies.map(company => (
+                            <CompanyRecom
+                                // stipend={company}
+                                name={company}
+                                key={company}
+                            />
+                        ))}
+                    {/* <CompanyRecom stipend="12,000" name="Tata Indicom" />
                     <CompanyRecom stipend="20,000" name="Aircel" />
-                    <CompanyRecom stipend="7,000" name="BSNL" />
+                    <CompanyRecom stipend="7,000" name="BSNL" /> */}
                 </section>
                 <Footer />
             </main>

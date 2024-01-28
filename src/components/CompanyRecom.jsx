@@ -4,7 +4,7 @@ const CompanyRecom = (props) => {
   return (
     <>
 
-      <div className="w-[25rem] py-4 border-b border-gray-700 border-opacity-40">
+      <div className="w-[25rem] py-3 border-b border-gray-700 border-opacity-40">
         <div className="relative flex justify-between items-center gap-4 py-3 pl-2 pr-6 rounded-xl shadow-indigo-900/5">
           <div className="flex space-x-4">
 

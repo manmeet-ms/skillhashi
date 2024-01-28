@@ -8,13 +8,12 @@
     padding: 0;
 }
 body{
-    width: 110vw;
-    height: 100vh;
-    /* padding: 16px; */
+    width: 100vw; 
+    height: 100vh;   
     /* display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2px; */
+    padding: 14px; */
 }
 h1,
 h2,

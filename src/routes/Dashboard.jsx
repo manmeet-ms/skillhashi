@@ -4,6 +4,8 @@ import { logout, getUserSkills } from "../firebase";
 import { useAuth } from "../hooks/useAuth";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
+import SkillPill from "../components/SkillPill";
+
 
 import {
     PresentationChartBarIcon,
@@ -15,7 +17,6 @@ import {
 const Home = () => {
     const [skills, setSkills] = useState([]);
     const { user, loading } = useAuth();
-
     useEffect(() => {
         if (!loading) {
             getUserSkills(user.email).then(res => {
@@ -53,21 +54,25 @@ const Home = () => {
                             <ClockIcon className="w-3 h-3 -mb-1 mr-1" />
                             {d}
                         </span> */}
-                        <h1 className="title-font font-medium text-3xl text-white ">
+                        <h1 className="title-font font-medium text-2xl text-white">
                             Your Skills
                         </h1>
                     </div>
-                    <div className=" flex justify-center items-center w-100 h-48 bg-gray-800 rounded-xl">
-                        {/* <button className="text-gray-100 bg-indigo-600 border-0 py-3 px-6 focus:outline-none hover:bg-indigo-600 rounded-full text-base font-medium shadow-lg"> <Link to="/setrole">Set Role<Link/></Link> </button> */}
+                    <div className="flex flex-wrap justify-start items-center w-100 h-48 bg-gray-800/20 rounded-xl">
+                        {skills &&
+                            skills.map(role => (
+                                <SkillPill name={role} key={role} />
+                            ))}
+
                     </div>
                 </section>
-
+                <hr className="opacity-30" />
                 <section className="">
-                    <h1 className="title-font font-medium text-3xl text-white my-6">
+                    <h1 className="title-font font-medium text-2xl text-white my-2">
                         Company Recoms
                     </h1>
                     <CompanyRecom stipend="12,000" name="Tata Indicom" />
-                    <CompanyRecom stipend="20,000" name="Samsoong" />
+                    <CompanyRecom stipend="20,000" name="Aircel" />
                     <CompanyRecom stipend="7,000" name="BSNL" />
                 </section>
                 <Footer />

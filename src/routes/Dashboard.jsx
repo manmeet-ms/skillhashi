@@ -20,7 +20,7 @@ const Home = () => {
     useEffect(() => {
         if (!loading) {
             getUserSkills(user.email).then(res => {
-                setSkills(res.skills);
+                setSkills(res);
             });
         }
     }, [loading, user]);

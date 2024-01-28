@@ -16,50 +16,55 @@ import Unprotected from "./Unprotected.jsx";
 // See the next paragraph for explaination of this line
 import { registerAction, loginAction } from "./actions.js";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+    [
+        {
+            path: "/",
+            element: (
+                <Unprotected>
+                    <Login />
+                </Unprotected>
+            ),
+            action: loginAction,
+        },
+        {
+            path: "/register",
+            element: (
+                <Unprotected>
+                    <Register />
+                </Unprotected>
+            ),
+            action: registerAction,
+        },
+        {
+            path: "/reset-password",
+            element: (
+                <Unprotected>
+                    <ResetPassword />
+                </Unprotected>
+            ),
+        },
+        {
+            path: "/dashboard",
+            element: (
+                <Protected>
+                    <Dashboard />
+                </Protected>
+            ),
+        },
+        {
+            path: "/setrole",
+            element: (
+                <Protected>
+                    <SetRole />
+                </Protected>
+            ),
+        },
+    ],
     {
-        path: "/",
-        element: (
-            <Unprotected>
-                <Login />
-            </Unprotected>
-        ),
-        action: loginAction,
-    },
-    {
-        path: "/register",
-        element: (
-            <Unprotected>
-                <Register />
-            </Unprotected>
-        ),
-        action: registerAction,
-    },
-    {
-        path: "/reset-password",
-        element: (
-            <Unprotected>
-                <ResetPassword />
-            </Unprotected>
-        ),
-    },
-    {
-        path: "/dashboard",
-        element: (
-            <Protected>
-                <Dashboard />
-            </Protected>
-        ),
-    },
-    {
-        path: "/setrole",
-        element: (
-            <Protected>
-                <SetRole />
-            </Protected>
-        ),
-    },
-]);
+        basename: "/skillhashi",
+    }
+);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>

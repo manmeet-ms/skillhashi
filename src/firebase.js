@@ -200,6 +200,28 @@ const getAllRoles = async () => {
     }
 };
 
+/**
+ * Return list of companies that have the role that the user is interested in.
+ * Splits the company name on the @ symbol and returns the first part of the string.
+ * @param {string} role - The role that the user is interested in
+ * @returns {Promise<string[]>} - A promise that resolves with an array of strings on success.
+ */
+const getCompaniesWithRole = async role => {
+    try {
+        const allCompanyDocs = await getDocs(collection(db, "companies"));
+        let companies = [];
+        allCompanyDocs.forEach(companyDoc => {
+            if (companyDoc.data().roles.includes(role)) {
+                companies.push(companyDoc.id.split("@")[0]);
+            }
+        });
+        console.log("companies", companies);
+        return companies;
+    } catch (error) {
+        console.log("Error fetching companies with role", error.message);
+    }
+};
+
 // Now write operations for collections:
 
 /**
@@ -296,4 +318,5 @@ export {
     addCompany,
     addRole,
     getAllRoles,
+    getCompaniesWithRole,
 };

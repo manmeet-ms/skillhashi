@@ -27,19 +27,19 @@ export default function Register() {
 <div className="flex flex-col border-t-2 border-gray-700 border-opacity-60 mt-2 py-4">
 Are you signing up as company?
                 <div className="flex justify-start">
-                <div class="flex items-center py-4 mr-4">
-                    <div class="bg-white dark:bg-gray-100 rounded-full w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
-                        <input aria-labelledby="label2" value="1" type="radio" name="radio" class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
-                        <div class="check-icon hidden border-4 border-indigo-600 rounded-full w-full h-full z-1"></div>
+                <div className="flex items-center py-4 mr-4">
+                    <div className="bg-white dark:bg-gray-100 rounded-full w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
+                        <input aria-labelledby="label2" value="1" type="radio" name="radio" className="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
+                        <div className="check-icon hidden border-4 border-indigo-600 rounded-full w-full h-full z-1"></div>
                     </div>
-                    <label id="label2" class="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">Yes</label>
+                    <label id="label2" className="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">Yes</label>
                 </div>
-                <div class="flex items-center py-4 mr-4">
-                    <div class="bg-white dark:bg-gray-100 rounded-full w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
-                        <input aria-labelledby="label2" value="0" type="radio" name="radio" class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
-                        <div class="check-icon hidden border-4 border-indigo-600 rounded-full w-full h-full z-1"></div>
+                <div className="flex items-center py-4 mr-4">
+                    <div className="bg-white dark:bg-gray-100 rounded-full w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
+                        <input aria-labelledby="label2" value="0" type="radio" name="radio" className="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
+                        <div className="check-icon hidden border-4 border-indigo-600 rounded-full w-full h-full z-1"></div>
                     </div>
-                    <label id="label2" class="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">No</label>
+                    <label id="label2" className="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">No</label>
                 </div>
 
                 </div>

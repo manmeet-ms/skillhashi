@@ -30,7 +30,6 @@ const Home = () => {
     return (
         <>
             <main className="flex flex-col space-y-6 px-2">
-                {/* top bar */}
                 <header className="flex justify-between py-6  bg-gray-800 bg-opacity-40 rounded-b-xl text-gray-400">
                     <h1 className="title-font flex text-xl text-gray-200">
                         <PresentationChartBarIcon
